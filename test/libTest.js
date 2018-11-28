@@ -2,7 +2,8 @@ const assert = require ("assert");
 const { updateWorld,
         createBoard,
         declareDead,
-        declareAlive } = require ("../src/lib.js");
+        declareAlive,
+        allPossibleNeighbours } = require ("../src/lib.js");
 
 describe( "updateWorld" , function() {
   it( "should update state of provided live cells in given world" , function() {
@@ -33,5 +34,12 @@ describe('declareDead', function() {
 
     it('should update as dead if cell is not alive',function() {
      assert.deepEqual(declareDead('1'),' ');
+    })
+})
+
+describe('allPossibleNeighbours', function() {
+    it('should not update alive cell as dead',function() {
+      let product = [ '1,3', '1,1', '2,2', '2,3', '2,1', '0,2', '0,3', '0,1' ]
+      assert.deepEqual(allPossibleNeighbours('1,2'),product);
     })
 })

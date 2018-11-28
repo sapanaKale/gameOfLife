@@ -2,7 +2,8 @@ const { joinWithComa,
         convertToLinear,
         convertToMatrix,
         createUniqueList,
-        concat } = require("../src/util.js");
+        concat,
+        cartesionProduct } = require("../src/util.js");
 
 const createBoard = function(height, width) {
   let board = createUniqueList(height, width);
@@ -30,5 +31,14 @@ const declareDead  = function (element) {
   return (element == 'L') ? element : ' ';
 }
 
+const allPossibleNeighbours = function (cell) {
+  let x = +cell.split(',')[0];
+  let y = +cell.split(',')[1];
+  let neighbours = cartesionProduct( [x,x+1,x-1] , [y,y+1,y-1] );
+  neighbours = neighbours.map(x=>x.toString());
+  let index = neighbours.indexOf(cell);
+  neighbours.splice(index,1);
+  return neighbours;
+}
 
-module.exports = {createBoard, declareAlive, declareDead, updateWorld};
+module.exports = {createBoard, declareAlive, declareDead, updateWorld, allPossibleNeighbours};

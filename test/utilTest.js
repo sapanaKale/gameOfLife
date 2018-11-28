@@ -1,5 +1,5 @@
 const assert = require ("assert");
-const { concat, convertToLinear, convertToMatrix, createUniqueList, joinWithComa } = require ("../src/util.js");
+const { cartesionProduct, concat, convertToLinear, convertToMatrix, createUniqueList, joinWithComa } = require ("../src/util.js");
 
 describe( "createUniqueList" , function() {
   it( "should return empty list with size is zero", function() {
@@ -34,5 +34,11 @@ describe('convertToLinear', function() {
 describe('convertToMatrix', function() {
     it('should return matrix array for given linearArray', function() {
      assert.deepEqual(convertToMatrix(3,[1,2,1,2,3,4]),[[1,2,1],[2,3,4]]);
+    })
+})
+
+describe('cartesionProduct', function() {
+    it('should return all cartesionProduct of provided sets ', function() {
+      assert.deepEqual(cartesionProduct([1,2],[3,4]),[[1,3],[1,4],[2,3],[2,4]]);
     })
 })
