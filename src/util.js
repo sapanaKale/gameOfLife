@@ -31,4 +31,8 @@ const convertToMatrix = function(width,list) {
   return [list.slice(0,width)].concat(convertToMatrix(width,list.slice(width)));
 }
 
-module.exports = { cartesionProduct,  joinWithComa, createUniqueList, concat, convertToMatrix, convertToLinear };
+const increamentList = function(begin, end) {
+ return new Array(end - begin + 1).fill(begin).map( (x,i) => x+i );
+}
+
+module.exports = { increamentList, cartesionProduct,  joinWithComa, createUniqueList, concat, convertToMatrix, convertToLinear };

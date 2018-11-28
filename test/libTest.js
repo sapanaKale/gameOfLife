@@ -12,12 +12,9 @@ describe( "updateWorld" , function() {
 })
 
 describe( "createBoard" , function() {
-  it( "should return empty matrix when row and column equal to zero" , function() {
-    assert.deepEqual(createBoard(0, 0),[]);
-  });
-
-  it( "should return matrix of given row and column" , function() {
-    assert.deepEqual(createBoard(2,2),[['0,0','0,1'],['1,0','1,1']]);
+  it( "should return matrix according to the given bound " , function() {
+    assert.deepEqual(createBoard({topLeft: [0,0], bottomRight: [1,1]}),[['0,0','0,1'],['1,0','1,1']]);
+    assert.deepEqual(createBoard({topLeft: [1,1], bottomRight: [2,2]}),[['1,1','1,2'],['2,1','2,2']]);
   });
 })
 

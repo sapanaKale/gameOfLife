@@ -1,16 +1,21 @@
-const { joinWithComa,
+const { increamentList,
+        joinWithComa,
         convertToLinear,
         convertToMatrix,
         createUniqueList,
         concat,
         cartesionProduct } = require("../src/util.js");
 
-const createBoard = function(height, width) {
-  let board = createUniqueList(height, width);
-  return board.map(function(size, index) {
-    let row = createUniqueList(size, index);
-    return row.map(joinWithComa);
-  });
+const createBoard = function(bound) {
+  let x = bound.topLeft[0], x_prime = bound.bottomRight[0];
+ let y = bound.topLeft[1], y_prime = bound.bottomRight[1];
+ let matrix = [];
+ for(let i = x; i <= x_prime; i++) {
+   let joinIndexes = joinWithComa.bind(null,i);
+   let row = increamentList(y, y_prime).map(joinIndexes);
+   matrix.push(row);
+ }
+ return matrix;  
 }
 
 const updateWorld = function (world,liveCells) {
