@@ -30,6 +30,20 @@ const declareDead  = function (cells) {
     return ' ';
   });
 }
- 
 
-module.exports = { createBoard, joinWithComa, createUniqueList, declareAlive, declareDead };
+const concat = function(list1,list2) {
+  return list1.concat(list2);
+}
+
+const convertToLinear = function(matrix) {
+  return matrix.reduce(concat,[]);
+}
+
+const convertToMatrix = function(width,list) {
+  if(list.length == 0) {
+    return [];
+  }
+  return [list.slice(0,width)].concat(convertToMatrix(width,list.slice(width)));
+}
+
+module.exports = { createBoard, joinWithComa, createUniqueList, declareAlive, declareDead, concat, convertToMatrix, convertToLinear };

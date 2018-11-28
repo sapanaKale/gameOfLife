@@ -1,5 +1,5 @@
 const assert = require ("assert");
-const { createBoard, createUniqueList, joinWithComa, declareAlive, declareDead } = require ("../src/util.js");
+const { concat, convertToLinear, convertToMatrix, createBoard, createUniqueList, joinWithComa, declareAlive, declareDead } = require ("../src/util.js");
 
 describe( "createBoard" , function() {
   it( "should return empty matrix when row and column equal to zero" , function() {
@@ -39,5 +39,23 @@ describe('declareAlive', function() {
 describe('declareDead', function() {
     it('should updated cells as dead which are not lie in given world', function() {
      assert.deepEqual(declareDead(['L','0,1','1,0','L']),['L',' ',' ','L']);
+    })
+})
+
+describe('concat', function() {
+    it('should concat provided lists', function() {
+     assert.deepEqual(concat([1,2],[1,2]),[1,2,1,2]);
+    })
+})
+
+describe('convertToLinear', function() {
+    it('should return linear array for given matrix', function() {
+     assert.deepEqual(convertToLinear([[1,2],[1,2],[3,4]]),[1,2,1,2,3,4]);
+    })
+})
+
+describe('convertToMatrix', function() {
+    it('should return matrix array for given linearArray', function() {
+     assert.deepEqual(convertToMatrix(3,[1,2,1,2,3,4]),[[1,2,1],[2,3,4]]);
     })
 })
