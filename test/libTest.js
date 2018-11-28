@@ -27,7 +27,11 @@ describe('declareAlive', function() {
 })
 
 describe('declareDead', function() {
-    it('should updated cells as dead which are not lie in given world', function() {
-     assert.deepEqual(declareDead(['L','0,1','1,0','L']),['L',' ',' ','L']);
+    it('should not update alive cell as dead',function() {
+     assert.deepEqual(declareDead('L'),'L');
+    })
+
+    it('should update as dead if cell is not alive',function() {
+     assert.deepEqual(declareDead('1'),' ');
     })
 })

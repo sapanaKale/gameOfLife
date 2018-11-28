@@ -12,9 +12,11 @@ const createBoard = function(height, width) {
   });
 }
 
-const updateWorld = function (currentWorld,liveCells) {
-  currentWorld = liveCells.reduce(declareAlive,currentWorld);
-  return currentWorld.map(declareDead);
+const updateWorld = function (world,liveCells) {
+  let width = world[0].length;
+  world = liveCells.reduce(declareAlive,world);
+  world = convertToLinear(world).map(declareDead);
+  return convertToMatrix(width, world);
 }
 
 const declareAlive = function (world, liveCells) {
@@ -24,13 +26,8 @@ const declareAlive = function (world, liveCells) {
   return world;
 }
 
-const declareDead  = function (cells) {
-  return cells.map(function(element) {
-    if (element == 'L') {
-       return element ;
-    }
-    return ' ';
-  });
+const declareDead  = function (element) {
+  return (element == 'L') ? element : ' ';
 }
 
 
