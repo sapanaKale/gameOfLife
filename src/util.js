@@ -15,4 +15,21 @@ const createUniqueList = function(size, element) {
   return new Array(size).fill(element);
 }
 
-module.exports = { createBoard, joinWithComa, createUniqueList };
+const declareAlive = function (world, liveCells) {
+  let row = liveCells.split(',')[0];
+  let column = liveCells.split(',')[1];
+  world[row][column] = 'L';
+  return world;
+}
+
+const declareDead  = function (cells) {
+  return cells.map(function(element) {
+    if (element == 'L') {
+       return element ;
+    }
+    return ' ';
+  });
+}
+ 
+
+module.exports = { createBoard, joinWithComa, createUniqueList, declareAlive, declareDead };

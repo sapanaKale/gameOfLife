@@ -1,5 +1,5 @@
 const assert = require ("assert");
-const { createBoard, createUniqueList, joinWithComa } = require ("../src/util.js");
+const { createBoard, createUniqueList, joinWithComa, declareAlive, declareDead } = require ("../src/util.js");
 
 describe( "createBoard" , function() {
   it( "should return empty matrix when row and column equal to zero" , function() {
@@ -28,4 +28,16 @@ describe( "joinWithComa" , function() {
     assert.deepEqual(joinWithComa('a', 'b'),'a,b');
     assert.deepEqual(joinWithComa(0, 1),'0,1');
   });
+})
+
+describe('declareAlive', function() {
+    it('should updated cells as live as per provided live cells list ', function() {
+      assert.deepEqual(declareAlive([['0,0','0,1'],['1,0','1,1']],'0,1'),[['0,0','L'],['1,0','1,1']]);
+    })
+})
+
+describe('declareDead', function() {
+    it('should updated cells as dead which are not lie in given world', function() {
+     assert.deepEqual(declareDead(['L','0,1','1,0','L']),['L',' ',' ','L']);
+    })
 })
