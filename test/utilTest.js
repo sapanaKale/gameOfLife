@@ -1,5 +1,12 @@
 const assert = require ("assert");
-const { increamentList, cartesionProduct, concat, convertToLinear, convertToMatrix, createUniqueList, joinWithComa } = require ("../src/util.js");
+const { increamentList, 
+  cartesionProduct, 
+  concat, 
+  convertToLinear, 
+  convertToMatrix, 
+  createUniqueList, 
+  joinWithComa,
+  isIncludes } = require ("../src/util.js");
 
 describe( "createUniqueList" , function() {
   it( "should return empty list with size is zero", function() {
@@ -20,32 +27,41 @@ describe( "joinWithComa" , function() {
 })
 
 describe('concat', function() {
-    it('should concat provided lists', function() {
-     assert.deepEqual(concat([1,2],[1,2]),[1,2,1,2]);
-    })
+  it('should concat provided lists', function() {
+    assert.deepEqual(concat([1,2],[1,2]),[1,2,1,2]);
+  })
 })
 
 describe('convertToLinear', function() {
-    it('should return linear array for given matrix', function() {
-     assert.deepEqual(convertToLinear([[1,2],[1,2],[3,4]]),[1,2,1,2,3,4]);
-    })
+  it('should return linear array for given matrix', function() {
+    assert.deepEqual(convertToLinear([[1,2],[1,2],[3,4]]),[1,2,1,2,3,4]);
+  })
 })
 
 describe('convertToMatrix', function() {
-    it('should return matrix array for given linearArray', function() {
-     assert.deepEqual(convertToMatrix(3,[1,2,1,2,3,4]),[[1,2,1],[2,3,4]]);
-    })
+  it('should return matrix array for given linearArray', function() {
+    assert.deepEqual(convertToMatrix(3,[1,2,1,2,3,4]),[[1,2,1],[2,3,4]]);
+  })
 })
 
 describe('cartesionProduct', function() {
-    it('should return all cartesionProduct of provided sets ', function() {
-      assert.deepEqual(cartesionProduct([1,2],[3,4]),[[1,3],[1,4],[2,3],[2,4]]);
-    })
+  it('should return all cartesionProduct of provided sets ', function() {
+    assert.deepEqual(cartesionProduct([1,2],[3,4]),[[1,3],[1,4],[2,3],[2,4]]);
+  })
 })
 
 describe('increamentList', function() {
-   it('should return list of numbers in increamental order provided from start value to end value', function() {
-     assert.deepEqual(increamentList(0, 3),[0,1,2,3]);
-     assert.deepEqual(increamentList(1, 5),[1,2,3,4,5]);
-   })
+  it('should return list of numbers in increamental order provided from start value to end value', function() {
+    assert.deepEqual(increamentList(0, 3),[0,1,2,3]);
+    assert.deepEqual(increamentList(1, 5),[1,2,3,4,5]);
+  })
+})
+
+describe('isIncludes', function() {
+  it('should return true when given element is includes in given list', function() {
+    assert.deepEqual(isIncludes([1,2,3],2),true);
+  })
+  it('should return false when given element is not present in given list', function() {
+    assert.deepEqual(isIncludes([1,2,3],4),false);
+  })
 })

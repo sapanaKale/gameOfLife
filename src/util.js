@@ -35,4 +35,8 @@ const increamentList = function(begin, end) {
  return new Array(end - begin + 1).fill(begin).map( (x,i) => x+i );
 }
 
-module.exports = { increamentList, cartesionProduct,  joinWithComa, createUniqueList, concat, convertToMatrix, convertToLinear };
+const isIncludes = function (source, element) {
+  return source.includes(element);
+}
+
+module.exports = { isIncludes, increamentList, cartesionProduct,  joinWithComa, createUniqueList, concat, convertToMatrix, convertToLinear };

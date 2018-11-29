@@ -4,7 +4,8 @@ const { increamentList,
         convertToMatrix,
         createUniqueList,
         concat,
-        cartesionProduct } = require("../src/util.js");
+        cartesionProduct,
+        isIncludes } = require("../src/util.js");
 
 const createBoard = function(bound) {
   let x = bound.topLeft[0], x_prime = bound.bottomRight[0];
@@ -39,11 +40,23 @@ const declareDead  = function (element) {
 const allPossibleNeighbours = function (cell) {
   let x = +cell.split(',')[0];
   let y = +cell.split(',')[1];
-  let neighbours = cartesionProduct( [x,x+1,x-1] , [y,y+1,y-1] );
+  let neighbours = cartesionProduct( [x-1,x,x+1] , [y-1,y,y+1] );
   neighbours = neighbours.map(x=>x.toString());
   let index = neighbours.indexOf(cell);
   neighbours.splice(index,1);
   return neighbours;
 }
 
-module.exports = {createBoard, declareAlive, declareDead, updateWorld, allPossibleNeighbours};
+const extractNeighbours = function(bound, cell) {
+  let validCells = convertToLinear(createBoard(bound));
+  let neighbourCells = allPossibleNeighbours(cell);
+  let isValid = isIncludes.bind(null,validCells);
+  return neighbourCells.filter(isValid);
+}
+
+module.exports = {createBoard, 
+                  declareAlive, 
+                  declareDead, 
+                  updateWorld, 
+                  allPossibleNeighbours,
+                  extractNeighbours };
