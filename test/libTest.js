@@ -5,7 +5,8 @@ const { addRows,
         declareDead,
         declareAlive,
         allPossibleNeighbours,
-        extractNeighbours } = require ("../src/lib.js");
+        extractNeighbours,
+        isAlive } = require ("../src/lib.js");
 
 describe( "updateWorld" , function() {
   it( "should update state of provided live cells in given world" , function() {
@@ -60,5 +61,14 @@ describe('allPossibleNeighbours', function() {
 describe('extractNeighbours', function() {
   it('should return all valid neighbours for provided world and cell position', function() {
     assert.deepEqual(extractNeighbours({topLeft:[0,0],bottomRight:[2,2]},'0,1'),['0,0','0,2','1,0','1,1','1,2']);
+  })
+})
+
+describe('isAlive', function() {
+  it('should return true if cell will alive in the provided world state.', function() {
+    assert.deepEqual(isAlive([[0,0], [0,1], [1,2]], {topLeft: [0,0], bottomRight: [3,3]}, '1,1'), true);
+  })
+  it('should return false if cell will died in the provided world state.', function() {
+    assert.deepEqual(isAlive([[0,0], [0,1]], {topLeft: [0,0], bottomRight: [3,3]}, '1,3'), false);
   })
 })

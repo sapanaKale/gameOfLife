@@ -34,6 +34,7 @@ const convertToMatrix = function(width,list) {
 const isIncludes = function (source, element) {
   return source.includes(element);
 }
+
 const increamentList = function(begin, end) {
  let size = end - begin + 1;
  if(size < 0) {
@@ -42,4 +43,17 @@ const increamentList = function(begin, end) {
  return new Array(size).fill(begin).map( (x,i) => x+i );
 }
 
-module.exports = { isIncludes, increamentList, cartesionProduct,  joinWithComa, createUniqueList, concat, convertToMatrix, convertToLinear };
+const intersection = function (set1, set2) {
+  let isContain = isIncludes.bind(null,set2);
+  return set1.filter( isContain );
+}
+
+module.exports = { isIncludes, 
+                   increamentList, 
+                   cartesionProduct,  
+                   joinWithComa, 
+                   createUniqueList, 
+                   concat, 
+                   convertToMatrix, 
+                   convertToLinear,
+                   intersection };

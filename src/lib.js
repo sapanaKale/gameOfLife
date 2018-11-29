@@ -1,4 +1,5 @@
-const { increamentList,
+const { intersection,
+        increamentList,
         joinWithComa,
         convertToLinear,
         convertToMatrix,
@@ -56,10 +57,20 @@ const extractNeighbours = function(bound, cell) {
   return neighbourCells.filter(isValid);
 }
 
+const isAlive = function ( liveCells, bound, cell ) {
+  let neighbours = extractNeighbours( bound, cell );
+  let liveCellsString = liveCells.map( x => x.toString() );
+  let aliveNeighbours = intersection( neighbours, liveCellsString );
+  let willRemainAlive = aliveNeighbours.length == 2 && liveCellsString.includes(cell);
+  let willAlive = aliveNeighbours.length == 3;
+  return willRemainAlive|| willAlive;
+}
+
 module.exports = {createBoard, 
                   addRows,
                   declareAlive, 
                   declareDead, 
                   updateWorld, 
                   allPossibleNeighbours,
-                  extractNeighbours };
+                  extractNeighbours,
+                  isAlive};

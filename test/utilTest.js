@@ -1,5 +1,6 @@
 const assert = require ("assert");
 const { increamentList, 
+  intersection,
   cartesionProduct, 
   concat, 
   convertToLinear, 
@@ -64,4 +65,12 @@ describe('isIncludes', function() {
   it('should return false when given element is not present in given list', function() {
     assert.deepEqual(isIncludes([1,2,3],4),false);
   })
+})
+
+describe('intersection', function() {
+ it('should return intersection of the given sets.', function() {
+   assert.deepEqual(intersection([1,2,3,4], [2,3]), [2,3] );
+   assert.deepEqual(intersection(['1,2', '2,3', '4,5'], ['1,3']), [] );
+   assert.deepEqual(intersection(['1,2', '2,3', '4,5'], ['1,2', '1,4']), ['1,2'] );
+ })
 })
