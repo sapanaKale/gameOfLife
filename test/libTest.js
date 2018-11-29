@@ -1,5 +1,6 @@
 const assert = require ("assert");
-const { updateWorld,
+const { addRows,
+        updateWorld,
         createBoard,
         declareDead,
         declareAlive,
@@ -17,6 +18,20 @@ describe( "createBoard" , function() {
     assert.deepEqual(createBoard({topLeft: [0,0], bottomRight: [1,1]}),[['0,0','0,1'],['1,0','1,1']]);
     assert.deepEqual(createBoard({topLeft: [1,1], bottomRight: [2,2]}),[['1,1','1,2'],['2,1','2,2']]);
   });
+  it("should return empty array when invalid bounds are provided" , function() {
+    assert.deepEqual(createBoard({topLeft: [1,1], bottomRight: [-3,5]}),[]);
+  });
+})
+
+describe('addRows', function() {
+ it('should add rows to the given matrix with the given co-ordinates.', function() {
+   let matrix = [];
+   let expected = [['1,0', '1,1', '1,2', '1,3']];
+   assert.deepEqual(addRows(0, 3, matrix, 1), expected );
+   matrix = [ [ '0,0', '0,1', '0,2', '0,3' ] ];
+   expected = [ [ '0,0', '0,1', '0,2', '0,3' ], [ '1,0', '1,1', '1,2', '1,3' ] ];
+   assert.deepEqual(addRows(0, 3, matrix, 1), expected );
+ })
 })
 
 describe('declareAlive', function() {

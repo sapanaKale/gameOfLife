@@ -8,15 +8,17 @@ const { increamentList,
         isIncludes } = require("../src/util.js");
 
 const createBoard = function(bound) {
-  let x = bound.topLeft[0], x_prime = bound.bottomRight[0];
- let y = bound.topLeft[1], y_prime = bound.bottomRight[1];
- let matrix = [];
- for(let i = x; i <= x_prime; i++) {
-   let joinIndexes = joinWithComa.bind(null,i);
-   let row = increamentList(y, y_prime).map(joinIndexes);
-   matrix.push(row);
- }
- return matrix;  
+  let x = bound.topLeft[0], xPrime = bound.bottomRight[0];
+  let y = bound.topLeft[1], yPrime = bound.bottomRight[1];
+  let rows = increamentList(x, xPrime);
+  return rows.reduce( addRows.bind(null, y, yPrime), [] );
+}
+
+const addRows = function(y, yPrime, matrix, rowNumber) {
+ let joinIndexes = joinWithComa.bind(null, rowNumber);
+ let row = increamentList(y, yPrime).map( joinIndexes );
+ matrix.push( row );
+ return matrix;
 }
 
 const updateWorld = function (world,liveCells) {
@@ -55,6 +57,7 @@ const extractNeighbours = function(bound, cell) {
 }
 
 module.exports = {createBoard, 
+                  addRows,
                   declareAlive, 
                   declareDead, 
                   updateWorld, 

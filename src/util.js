@@ -31,12 +31,15 @@ const convertToMatrix = function(width,list) {
   return [list.slice(0,width)].concat(convertToMatrix(width,list.slice(width)));
 }
 
-const increamentList = function(begin, end) {
- return new Array(end - begin + 1).fill(begin).map( (x,i) => x+i );
-}
-
 const isIncludes = function (source, element) {
   return source.includes(element);
+}
+const increamentList = function(begin, end) {
+ let size = end - begin + 1;
+ if(size < 0) {
+   return [];
+ }
+ return new Array(size).fill(begin).map( (x,i) => x+i );
 }
 
 module.exports = { isIncludes, increamentList, cartesionProduct,  joinWithComa, createUniqueList, concat, convertToMatrix, convertToLinear };
