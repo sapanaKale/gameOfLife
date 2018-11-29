@@ -1,4 +1,5 @@
-const { intersection,
+const { splitNumbers,
+        intersection,
         increamentList,
         joinWithComa,
         convertToLinear,
@@ -66,6 +67,12 @@ const isAlive = function ( liveCells, bound, cell ) {
   return willRemainAlive|| willAlive;
 }
 
+const nextGeneration = function (liveCells, bound) {
+  let world = convertToLinear(createBoard(bound));
+  let isCellAlive = isAlive.bind(null, liveCells, bound);
+  return world.filter(isCellAlive).map(splitNumbers);
+}
+
 module.exports = {createBoard, 
                   addRows,
                   declareAlive, 
@@ -73,4 +80,5 @@ module.exports = {createBoard,
                   updateWorld, 
                   allPossibleNeighbours,
                   extractNeighbours,
-                  isAlive};
+                  isAlive,
+                  nextGeneration };

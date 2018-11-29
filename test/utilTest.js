@@ -7,7 +7,8 @@ const { increamentList,
   convertToMatrix, 
   createUniqueList, 
   joinWithComa,
-  isIncludes } = require ("../src/util.js");
+  isIncludes,
+  splitNumbers } = require ("../src/util.js");
 
 describe( "createUniqueList" , function() {
   it( "should return empty list with size is zero", function() {
@@ -74,3 +75,11 @@ describe('intersection', function() {
    assert.deepEqual(intersection(['1,2', '2,3', '4,5'], ['1,2', '1,4']), ['1,2'] );
  })
 })
+
+describe('splitNumbers', function() {
+ it('should return splitNumbers of the given sets.', function() {
+   assert.deepEqual(splitNumbers('1,2'), [1,2] );
+   assert.deepEqual(splitNumbers('0,0'), [0,0]);
+ })
+})
+

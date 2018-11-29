@@ -1,5 +1,6 @@
 const assert = require ("assert");
-const { addRows,
+const { nextGeneration,
+        addRows,
         updateWorld,
         createBoard,
         declareDead,
@@ -71,4 +72,14 @@ describe('isAlive', function() {
   it('should return false if cell will died in the provided world state.', function() {
     assert.deepEqual(isAlive([[0,0], [0,1]], {topLeft: [0,0], bottomRight: [3,3]}, '1,3'), false);
   })
+})
+
+describe('nextGeneration', function() {
+ it('should return nextGeneration of the given sets.', function() {
+   assert.deepEqual(nextGeneration([[0,1], [1,0]], { topLeft:[0,0], bottomRight:[1,1] }), [] );
+   assert.deepEqual(nextGeneration([[0,0], [1,0], [1,1]], { topLeft:[0,0], bottomRight:[1,1] }), [[0,0], [0,1], [1,0], [1,1]] );
+   assert.deepEqual(nextGeneration([[0,0], [1,0], [1,1], [3,4]], { topLeft:[0,0], bottomRight:[2,2] }), [[0,0], [0,1], [1,0], [1,1]] );
+   assert.deepEqual(nextGeneration([[0,0], [1,0], [1,1]], { topLeft:[1,1], bottomRight:[3,3] }), [] );
+ assert.deepEqual(nextGeneration([[1,1], [1,2], [1,4], [2,3], [3,4]], { topLeft:[1,1], bottomRight:[3,4] }), [[1,2], [1,3], [2,2], [2,3], [2,4]] );
+ })
 })

@@ -48,7 +48,14 @@ const intersection = function (set1, set2) {
   return set1.filter( isContain );
 }
 
-module.exports = { isIncludes, 
+const splitNumbers = function(stringOfnumbers) {
+ let list = [];
+ list = stringOfnumbers.split(',');
+ return list.map( x => +x );
+}
+
+module.exports = { splitNumbers,
+                   isIncludes, 
                    increamentList, 
                    cartesionProduct,  
                    joinWithComa, 
